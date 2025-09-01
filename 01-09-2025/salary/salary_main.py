@@ -1,18 +1,49 @@
 from salary_manager import create_salary, read_all, read_by_salary
-from  salary_manager import salaries, update, remove_by_salary
-create_salary(100)
-create_salary(8899)
-create_salary(88999)
+from salary_manager import salaries, update, remove_by_salary
 
-result_salaries = read_all()
-for salary in result_salaries:
-    print(salary)
 
-print(read_by_salary(8899))
-print(read_by_salary(88999))
-print(read_by_salary(100))
+def menu():
+    message = '''
 
-update(8899, 96666)
-print(read_all())
-remove_by_salary(100)
-print(read_all())
+
+1 - Crate Salary
+2 - Read All Salaries 
+3 - Read By Salary 
+4 - Update 
+5 - Delete 
+6 - Exit/ Logout 
+'''
+    choice = int(input(message))
+    if choice == 1:
+        salary = int(input('Salary:'))
+        create_salary(salary)
+    elif choice == 2:
+        result_salaries = read_all()
+        print('salaries:')
+        for salary in result_salaries:
+            print(salary)
+    elif choice == 3:
+        salary = int(input('Search  Salary:'))
+        index = read_by_salary(salary)
+        if salary == -1:
+            print('Salary not found')
+        else:
+            print(f'Salary is at index {index}')
+    elif choice == 4:
+        old_salary = int(input(' Salary to update:'))
+        new_salary = int(input('New Salary:'))
+        update(salary, new_salary)
+
+
+
+    elif choice == 5:
+        salary = int(input('Salary to delete:'))
+        remove_by_salary(salary)
+    return choice
+def menus():
+    print('Salary Mnaagement App')
+    choice = menu()
+    while choice != 6:
+        choice = menu ()
+    print('Thank You for using app')
+menus()
